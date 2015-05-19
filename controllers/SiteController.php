@@ -8,11 +8,11 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\CodeForm;
 
-class SiteController extends Controller
-{
-    public function behaviors()
-    {
+class SiteController extends Controller {
+	
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -34,8 +34,8 @@ class SiteController extends Controller
         ];
     }
 
-    public function actions()
-    {
+    public function actions() {
+		Yii::trace('actions method invoked');
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -47,13 +47,14 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionIndex()
-    {
-        return $this->render('index');
+    public function actionIndex() {
+		$model = new CodeForm();
+		return $this->render('index', [
+                'model' => $model,
+            ]);
     }
 
-    public function actionLogin()
-    {
+    public function actionLogin() {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -68,15 +69,13 @@ class SiteController extends Controller
         }
     }
 
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
 
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -89,9 +88,22 @@ class SiteController extends Controller
         }
     }
 
-    public function actionAbout()
-    {
+    public function actionAbout() {
         return $this->render('about');
     }
 	
+	/*
+	 * Recoge el código introducido, lo valida y devuelve una respuesta.
+	 */
+	public function actionCode() {
+		$model = new CodeForm();
+		if ($model->load(Yii::$app->request->post())) {
+			Yii::trace('actions method invoked: ' . $model->code);	
+			if ($model->checkCode($model->code)) {
+				return $this->render('code', ['code' => $model->code, 'target' => 'Código válido']);
+			} else {
+				return $this->render('index', ['model' => $model, 'msg' => 'codeError']);
+			}
+		}
+	}
 }

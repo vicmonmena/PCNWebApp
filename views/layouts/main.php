@@ -24,10 +24,10 @@ AppAsset::register($this);
 	<header>
 	<?php
 		$items = [
-			['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
+			['label' => Yii::t('app','Home'), 'url' => ['/site']],
 			//['label' => 'About', 'url' => ['/site/about']],
 			//['label' => 'Contact', 'url' => ['/site/contact']],
-			['label' => Yii::t('app','Usuario'), 'url' => ['/user/index']]
+			['label' => Yii::t('app','Usuario'), 'url' => ['/user']]
 		];
 		if (Yii::$app->user->isGuest) {
 			array_push($items,['label' => 'Login', 'url' => ['/user/login']]);
@@ -37,12 +37,12 @@ AppAsset::register($this);
 			}
 			array_push($items,
 				['label' => 'Logout (' . Yii::$app->user->displayName . ')',
-				'url' => ['/user/logout/index'],
+				'url' => ['/user/logout'],
 				'linkOptions' => ['data-method' => 'post']]
 			);
 		}
 		NavBar::begin([
-			'brandLabel' => '<img src="../images/logo_telefonica_azul.png">',
+			'brandLabel' => '<img src="images/logo_telefonica_azul.png">',
 			'brandUrl' => Yii::$app->homeUrl,
 			'options' => [
 				'class' => 'navbar-inverse navbar-fixed-top',
