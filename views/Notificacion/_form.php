@@ -20,6 +20,8 @@ use app\models\Ubicacion;
 
     <?= $form->field($model, 'codigo')->textInput(['maxlength' => true]) ?>
 
+	<?php // $form->field($model, 'atendida')->dropDownList(['0' => Yii::t('app', 'no'), '1' => Yii::t('app', 'si')]); ?>
+	
 	<?= $form->field($model, 'ubicacion') 
 		->dropDownList(
 			ArrayHelper::map(Ubicacion::find()->all(), 'idubicacion', 'nombre'))

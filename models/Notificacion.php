@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-
 /**
  * This is the model class for table "notificacion".
  *
@@ -14,6 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $fecha_creacion
  * @property integer $ubicacion
  * @property string $fecha_modificacion
+ * @property integer $atendida
  *
  * @property Ubicacion $ubicacion0
  * @property UsuarioNotificacion[] $usuarioNotificacions
@@ -34,9 +34,9 @@ class Notificacion extends ActiveRecord
     public function rules()
     {
         return [
-            [['motivo', 'codigo', 'ubicacion'], 'required'],
+            [['motivo', 'codigo', 'ubicacion'],'required'],
             [['fecha_creacion', 'fecha_modificacion'], 'safe'],
-            [['ubicacion'], 'integer'],
+            [['ubicacion', 'atendida'], 'integer'],
             [['motivo', 'codigo'], 'string', 'max' => 255]
         ];
     }
@@ -53,13 +53,14 @@ class Notificacion extends ActiveRecord
             'fecha_creacion' => Yii::t('app', 'Fecha Creacion'),
             'ubicacion' => Yii::t('app', 'Ubicacion'),
             'fecha_modificacion' => Yii::t('app', 'Fecha Modificacion'),
+            'atendida' => Yii::t('app', 'Atendida'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUbicacion()
+    public function getUbicacion0()
     {
         return $this->hasOne(Ubicacion::className(), ['idubicacion' => 'ubicacion']);
     }

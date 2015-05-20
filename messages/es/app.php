@@ -27,5 +27,7 @@ return [
 	
 	// Notificacion
 	'creado_por' => 'Creado por',
+	'no' => 'No',
+	'si' => 'Si',
 ];
 ?>

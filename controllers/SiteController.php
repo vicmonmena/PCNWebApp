@@ -48,13 +48,19 @@ class SiteController extends Controller {
     }
 
     public function actionIndex() {
+		if (Yii::$app->user->can("admin")) {
+			Yii::trace('Ya viene de vuelta, lo mandamos para otro lado');
+			//return $this->render('/notificacion/index');
+		}
 		$model = new CodeForm();
 		return $this->render('index', [
                 'model' => $model,
             ]);
     }
 
+	// No se utiliza, se usa el módulo user de la extensión amnah/yii2-user
     public function actionLogin() {
+		Yii::trace('ejecutando - actionLogin');	
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -68,14 +74,18 @@ class SiteController extends Controller {
             ]);
         }
     }
-
+	
+	// No se utiliza, se usa el módulo user de la extensión amnah/yii2-user
     public function actionLogout() {
+		Yii::trace('ejecutando - actionLogout');	
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
 
-    public function actionContact() {
+	/*
+	NO SE UTILIZA
+	public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -91,6 +101,7 @@ class SiteController extends Controller {
     public function actionAbout() {
         return $this->render('about');
     }
+	*/
 	
 	/*
 	 * Recoge el código introducido, lo valida y devuelve una respuesta.
