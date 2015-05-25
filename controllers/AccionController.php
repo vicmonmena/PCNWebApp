@@ -12,10 +12,11 @@ use yii\filters\VerbFilter;
 /**
  * AccionController implements the CRUD actions for Accion model.
  */
-class AccionController extends Controller
-{
-    public function behaviors()
-    {
+class AccionController extends Controller {
+	
+	public $layout = 'admin';
+	
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

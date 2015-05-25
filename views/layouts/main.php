@@ -30,13 +30,13 @@ AppAsset::register($this);
 			['label' => Yii::t('app','Usuario'), 'url' => ['/user']]
 		];
 		if (Yii::$app->user->isGuest) {
-			array_push($items,['label' => 'Login', 'url' => ['/user/login']]);
+			array_push($items,['label' => Yii::t('app','Login'), 'url' => ['/user/login']]);
 		} else {
 			if (Yii::$app->user->can("admin")) {
-				array_push($items,['label' => Yii::t('app','Dashboard'), 'url' => ['/notificacion/index']]);
+				array_push($items,['label' => Yii::t('app','Dashboard'), 'url' => ['/notificacion']]);
 			}
 			array_push($items,
-				['label' => 'Logout (' . Yii::$app->user->displayName . ')',
+				['label' => Yii::t('app','Logout') . ' (' . Yii::$app->user->displayName . ')',
 				'url' => ['/user/logout'],
 				'linkOptions' => ['data-method' => 'post']]
 			);

@@ -24,20 +24,21 @@ AppAsset::register($this);
 	<header>
 	<?php
 		$items = [
-			['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
-			['label' => Yii::t('app','Notificacion'), 'url' => ['notificacion/index']],
-			['label' => Yii::t('app','Proceso'), 'url' => ['proceso/index']],
-			['label' => Yii::t('app','Empresa'), 'url' => ['empresa/index']],
-			['label' => Yii::t('app','Ubicacion'), 'url' => ['ubicacion/index']],
+			['label' => Yii::t('app','Home'), 'url' => ['/site']],
+			['label' => Yii::t('app','Notificacion'), 'url' => ['notificacion']],
+			['label' => Yii::t('app','Proceso'), 'url' => ['proceso']],
+			['label' => Yii::t('app','Empresa'), 'url' => ['empresa']],
+			['label' => Yii::t('app','Ubicacion'), 'url' => ['ubicacion']],
+			['label' => Yii::t('app','Reportes'), 'url' => ['#']],
 		];
 		if (Yii::$app->user->isGuest) {
-			array_push($items,['label' => 'Login', 'url' => ['/user/login']]);
+			array_push($items,['label' => Yii::t('app','Login'), 'url' => ['/user/login']]);
 		} else {
 			if (Yii::$app->user->can("admin")) {
 				array_push($items,['label' => Yii::t('app','Dashboard'), 'url' => ['/dashboard']]);
 			}
 			array_push($items,
-				['label' => 'Logout (' . Yii::$app->user->displayName . ')',
+				['label' => Yii::t('app','Logout') . ' (' . Yii::$app->user->displayName . ')',
 				'url' => ['/user/logout'],
 				'linkOptions' => ['data-method' => 'post']]
 			);

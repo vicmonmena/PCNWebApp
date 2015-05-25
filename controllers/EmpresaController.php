@@ -12,10 +12,11 @@ use yii\filters\VerbFilter;
 /**
  * EmpresaController implements the CRUD actions for Empresa model.
  */
-class EmpresaController extends Controller
-{
-    public function behaviors()
-    {
+class EmpresaController extends Controller {
+	
+	public $layout = 'admin';
+	
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

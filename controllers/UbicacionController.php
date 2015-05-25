@@ -12,10 +12,11 @@ use yii\filters\VerbFilter;
 /**
  * UbicacionController implements the CRUD actions for Ubicacion model.
  */
-class UbicacionController extends Controller
-{
-    public function behaviors()
-    {
+class UbicacionController extends Controller {
+	
+	public $layout = 'admin';
+	
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

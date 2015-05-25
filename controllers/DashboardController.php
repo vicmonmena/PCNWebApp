@@ -2,12 +2,10 @@
 
 namespace app\controllers;
 
-class DashboardController extends \yii\web\Controller
-{
+class DashboardController extends \yii\web\Controller {
 	public $layout = 'admin';
 	
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $this->render('index');
     }
 

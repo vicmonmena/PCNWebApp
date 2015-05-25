@@ -12,10 +12,11 @@ use yii\filters\VerbFilter;
 /**
  * NotificacionController implements the CRUD actions for Notificacion model.
  */
-class NotificacionController extends Controller
-{
-    public function behaviors()
-    {
+class NotificacionController extends Controller {
+	
+	public $layout = 'admin';
+	
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

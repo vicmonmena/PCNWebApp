@@ -12,10 +12,10 @@ use yii\filters\VerbFilter;
 /**
  * ProcesoController implements the CRUD actions for Proceso model.
  */
-class ProcesoController extends Controller
-{
-    public function behaviors()
-    {
+class ProcesoController extends Controller {
+	public $layout = 'admin';
+	
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
