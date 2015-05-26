@@ -17,6 +17,11 @@ use yii\db\Expression;
  */
 class Empresa extends ActiveRecord
 {
+	/**
+     * @var int Admin user empresa
+     */
+    const EMPRESA_TELEFONICA_SA = 1;
+	
     /**
      * @inheritdoc
      */

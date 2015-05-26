@@ -4,25 +4,46 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 
 /**
- * This is the model class for table "role".
+ * This is the model class for table "tbl_role".
  *
  * @property integer $id
- * @property string $name
- * @property string $create_time
- * @property string $update_time
+ * @property string  $name
+ * @property string  $create_time
+ * @property string  $update_time
  * @property integer $can_admin
  *
- * @property User[] $users
+ * @property User[]  $users
  */
-class Role extends ActiveRecord {
+class Role extends ActiveRecord
+{
+    /**
+     * @var int Admin user role
+     */
+    const ROLE_ADMIN = 1;
+
+    /**
+     * @var int Default user role
+     */
+    const ROLE_USER = 2;
+	
+	/**
+     * @var int Default user role
+     */
+    const ROLE_DIRECTOR = 3;
+	
+	/**
+     * @var int Default user role
+     */
+    const ROLE_NOTIFIER = 4;
+	
     /**
      * @inheritdoc
      */
-    public static function tableName() {
-        return 'role';
+    public static function tableName()
+    {
+        return static::getDb()->tablePrefix . "role";
     }
 
     /**
@@ -30,12 +51,22 @@ class Role extends ActiveRecord {
      */
     public function rules()
     {
-        return [
+        $rules = [
             [['name'], 'required'],
-            [['create_time', 'update_time'], 'safe'],
-            [['can_admin'], 'integer'],
             [['name'], 'string', 'max' => 255]
+//            [['can_admin'], 'integer'],
+//            [['create_time', 'update_time'], 'safe'],
         ];
+
+        // add can_ rules
+        foreach ($this->attributes() as $attribute) {
+            if (strpos($attribute, 'can_') === 0) {
+                $rules[] = [[$attribute], 'integer'];
+            }
+        }
+
+        return $rules;
+
     }
 
     /**
@@ -44,11 +75,28 @@ class Role extends ActiveRecord {
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'create_time' => Yii::t('app', 'Create Time'),
-            'update_time' => Yii::t('app', 'Update Time'),
-            'can_admin' => Yii::t('app', 'Can Admin'),
+            'id'          => Yii::t('user', 'ID'),
+            'name'        => Yii::t('user', 'Name'),
+            'create_time' => Yii::t('user', 'Create Time'),
+            'update_time' => Yii::t('user', 'Update Time'),
+            'can_admin'   => Yii::t('user', 'Can Admin'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => 'yii\behaviors\TimestampBehavior',
+                'value'      => function () { return date("Y-m-d H:i:s"); },
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                ],
+            ],
         ];
     }
 
@@ -57,23 +105,40 @@ class Role extends ActiveRecord {
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['role_id' => 'id']);
+        $user = Yii::$app->getModule("user")->model("User");
+        return $this->hasMany($user::className(), ['role_id' => 'id']);
     }
-	
-	/**
-     * @inheritdoc
+
+    /**
+     * Check permission
+     *
+     * @param string $permission
+     * @return bool
      */
-    public function behaviors()
+    public function checkPermission($permission)
     {
-        return [
-            'timestamp' => [
-                'class'      => 'yii\behaviors\TimestampBehavior',
-                'value'      => new Expression('NOW()'),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'create_time',
-					ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time'
-                ],
-            ],
-        ];
+        $roleAttribute = "can_{$permission}";
+        return $this->$roleAttribute ? true : false;
+    }
+
+    /**
+     * Get list of roles for creating dropdowns
+     *
+     * @return array
+     */
+    public static function dropdown()
+    {
+        // get and cache data
+        static $dropdown;
+        if ($dropdown === null) {
+
+            // get all records from database and generate
+            $models = static::find()->all();
+            foreach ($models as $model) {
+                $dropdown[$model->id] = $model->name;
+            }
+        }
+
+        return $dropdown;
     }
 }

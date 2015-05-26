@@ -16,6 +16,12 @@ use yii\db\Expression;
  */
 class Proceso extends ActiveRecord
 {
+	
+	/**
+     * @var int Admin user proceso
+     */
+    const PROCESO_ADMIN = 1;
+	
     /**
      * @inheritdoc
      */
