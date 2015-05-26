@@ -7,8 +7,10 @@ use app\models\Ubicacion;
 use app\models\UbicacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
+use yii\filters\VerbFilter;
+use yii\db\IntegrityException;
+use yii\bootstrap\Alert;
 
 /**
  * UbicacionController implements the CRUD actions for Ubicacion model.
@@ -112,11 +114,14 @@ class UbicacionController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+    public function actionDelete($id) {	
+		try {
+			$this->findModel($id)->delete();
+			return $this->redirect(['index']);
+		} catch (IntegrityException $e) {
+			Yii::trace('Excepción capturada: ' .  $e->getMessage());
+			Yii::$app->session->setFlash('Ok', 'No se puede eliminar. Está siendo usado por alguna notificación.');
+		}
     }
 
     /**

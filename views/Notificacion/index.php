@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 use app\models\Ubicacion;
 
@@ -29,7 +30,11 @@ $this->title = Yii::t('app', 'Notificacions');
             'codigo',
 			[
 				'attribute' => 'ubicacion',
-				'value' => 'ubicacion.nombre'
+				'value' => function($model) {
+                    $loc = Ubicacion::findOne($model->ubicacion);
+					return $loc->nombre;
+                },
+				'filter' => ArrayHelper::map(Ubicacion::find()->all(), 'idubicacion', 'nombre'),
 			],
 			'fecha_creacion',
             'fecha_modificacion',

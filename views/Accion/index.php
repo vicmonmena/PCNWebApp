@@ -23,11 +23,9 @@ $this->title = Yii::t('app', 'Accion');
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'procedimiento',
             'fecha_creacion',
             'fecha_modificacion',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

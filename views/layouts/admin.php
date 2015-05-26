@@ -28,8 +28,9 @@ AppAsset::register($this);
 			['label' => Yii::t('app','Usuario'), 'url' => ['/user/admin']],
 			['label' => Yii::t('app','Rol'), 'url' => ['/role']],
 			['label' => Yii::t('app','Notificacion'), 'url' => ['/notificacion']],
-			['label' => Yii::t('app','Proceso'), 'url' => ['/proceso']],
+			['label' => Yii::t('app','Accion'), 'url' => ['/accion']],
 			['label' => Yii::t('app','Empresa'), 'url' => ['/empresa']],
+			['label' => Yii::t('app','Proceso'), 'url' => ['/proceso']],
 			['label' => Yii::t('app','Ubicacion'), 'url' => ['/ubicacion']],
 			['label' => Yii::t('app','Reportes'), 'url' => ['#']],
 		];

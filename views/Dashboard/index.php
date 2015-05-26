@@ -27,10 +27,12 @@ $this->title = Yii::t('app','Dashboard');
 				echo Menu::widget([
 					'items' => [
 						// not just as 'controller' even if default action is used.
-						['label' => Yii::t('app','Notificacion'), 'url' => ['notificacion/index']],
-						['label' => Yii::t('app','Proceso'), 'url' => ['proceso/index']],
-						['label' => Yii::t('app','Empresa'), 'url' => ['empresa/index']],
-						['label' => Yii::t('app','Ubicacion'), 'url' => ['ubicacion/index']],
+						['label' => Yii::t('app','Notificacion'), 'url' => ['notificacion']],
+						['label' => Yii::t('app','Accion'), 'url' => ['accion']],
+						['label' => Yii::t('app','Empresa'), 'url' => ['empresa']],
+						['label' => Yii::t('app','Proceso'), 'url' => ['proceso']],
+						['label' => Yii::t('app','Ubicacion'), 'url' => ['ubicacion']],
+						['label' => Yii::t('app','Reportes'), 'url' => ['#']],
 					],
 				]);
 			?>
