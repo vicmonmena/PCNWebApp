@@ -3,6 +3,7 @@ return [
 	'Home' => 'Home',
 	'PCN' => 'Continuity Business Plan',
 	'PCNhelp' => 'Notifica a la dirección sobre la incidencia que se ha producido indicando el motivo y la ubicación',
+	'Notificar-ayuda' => 'Input subject and location where the problem has happend. Next, clic on submit to notify.',
 	'PCNInputCode' => 'Introduce el código que has recibido por SMS/Email',
 	'derechos' => 'All right reserved',
 	'Enviar' => 'Submit',

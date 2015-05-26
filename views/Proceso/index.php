@@ -8,7 +8,6 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Procesos');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="proceso-index">
 

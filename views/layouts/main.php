@@ -27,14 +27,18 @@ AppAsset::register($this);
 			['label' => Yii::t('app','Home'), 'url' => ['/site']],
 			//['label' => 'About', 'url' => ['/site/about']],
 			//['label' => 'Contact', 'url' => ['/site/contact']],
-			['label' => Yii::t('app','Usuario'), 'url' => ['/user']]
+			['label' => 'Operaciones (desarrollo)', 'url' => ['/user']]
 		];
 		if (Yii::$app->user->isGuest) {
 			array_push($items,['label' => Yii::t('app','Login'), 'url' => ['/user/login']]);
 		} else {
+			//if (Yii::$app->user->can("notifier")) {
+				array_push($items,['label' => Yii::t('app','Notificar'), 'url' => ['/site/notify']]);
+			//}
 			if (Yii::$app->user->can("admin")) {
-				array_push($items,['label' => Yii::t('app','Dashboard'), 'url' => ['/notificacion']]);
+				array_push($items,['label' => Yii::t('app','Dashboard'), 'url' => ['/dashboard']]);
 			}
+			
 			array_push($items,
 				['label' => Yii::t('app','Logout') . ' (' . Yii::$app->user->displayName . ')',
 				'url' => ['/user/logout'],

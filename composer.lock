@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5e74587620bd662f7f16a322005b20c5",
+    "hash": "ab4afd3b95401ae1d0deb8271e8540ff",
     "packages": [
         {
             "name": "amnah/yii2-user",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/amnah/yii2-user.git",
-                "reference": "46c73c2e3863afa7fa365c9b455f8d2ec4181731"
+                "reference": "623d60be69c9997329d98a3d8bee2b0e22ae4208"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amnah/yii2-user/zipball/46c73c2e3863afa7fa365c9b455f8d2ec4181731",
-                "reference": "46c73c2e3863afa7fa365c9b455f8d2ec4181731",
+                "url": "https://api.github.com/repos/amnah/yii2-user/zipball/623d60be69c9997329d98a3d8bee2b0e22ae4208",
+                "reference": "623d60be69c9997329d98a3d8bee2b0e22ae4208",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-05-07 12:06:22"
+            "time": "2015-05-22 03:55:18"
         },
         {
             "name": "bower-asset/bootstrap",

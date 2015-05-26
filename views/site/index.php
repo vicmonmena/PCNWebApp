@@ -35,6 +35,5 @@ $this->title = Yii::t('app','PCN');
 			</p>
 			<? }?>
 		</div>
-
     </div>
 </div>

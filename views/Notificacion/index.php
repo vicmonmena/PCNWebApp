@@ -9,7 +9,6 @@ use app\models\Ubicacion;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Notificacions');
-$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="notificacion-index">

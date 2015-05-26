@@ -25,10 +25,12 @@ AppAsset::register($this);
 	<?php
 		$items = [
 			['label' => Yii::t('app','Home'), 'url' => ['/site']],
-			['label' => Yii::t('app','Notificacion'), 'url' => ['notificacion']],
-			['label' => Yii::t('app','Proceso'), 'url' => ['proceso']],
-			['label' => Yii::t('app','Empresa'), 'url' => ['empresa']],
-			['label' => Yii::t('app','Ubicacion'), 'url' => ['ubicacion']],
+			['label' => Yii::t('app','Usuario'), 'url' => ['/user/admin']],
+			['label' => Yii::t('app','Rol'), 'url' => ['/role']],
+			['label' => Yii::t('app','Notificacion'), 'url' => ['/notificacion']],
+			['label' => Yii::t('app','Proceso'), 'url' => ['/proceso']],
+			['label' => Yii::t('app','Empresa'), 'url' => ['/empresa']],
+			['label' => Yii::t('app','Ubicacion'), 'url' => ['/ubicacion']],
 			['label' => Yii::t('app','Reportes'), 'url' => ['#']],
 		];
 		if (Yii::$app->user->isGuest) {
@@ -45,7 +47,7 @@ AppAsset::register($this);
 		}
 		
 		NavBar::begin([
-			'brandLabel' => '<img src="../images/logo_telefonica_azul.png">',
+			'brandLabel' => '<img src="images/logo_telefonica_azul.png">',
 			'brandUrl' => Yii::$app->homeUrl,
 			'options' => [
 				'class' => 'navbar-inverse navbar-fixed-top',

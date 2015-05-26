@@ -7,8 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\AccionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Accions');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Accion');
 ?>
 <div class="accion-index">
 

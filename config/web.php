@@ -27,7 +27,14 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => true,
-            'messageConfig' => [
+			'viewPath' => '@app/mail',
+            'transport' => [
+				'class' => 'Swift_SmtpTransport',
+				'host' => '10.102.196.8',
+				'username' => 'vicente.montanomena@telefonica.com',
+				'password' => 'Vmm12345',
+			],
+			'messageConfig' => [
                 'from' => ['admin@website.com' => 'Admin'], // this is needed for sending emails
                 'charset' => 'UTF-8',
             ]

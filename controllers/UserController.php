@@ -3,16 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Notificacion;
-use app\models\NotificacionSearch;
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
+
 /**
- * NotificacionController implements the CRUD actions for Notificacion model.
+ * UserController implements the CRUD actions for User model.
  */
-class NotificacionController extends Controller {
+class UserController extends Controller {
 	
 	public $layout = 'admin';
 	
@@ -42,12 +43,12 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Lists all Notificacion models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new NotificacionSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -57,7 +58,7 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Displays a single Notificacion model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      */
@@ -69,16 +70,16 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Creates a new Notificacion model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Notificacion();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idnotificacion]);
+            return $this->redirect(['view', 'id' => $model->idusuario]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -87,7 +88,7 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Updates an existing Notificacion model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,7 +98,7 @@ class NotificacionController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idnotificacion]);
+            return $this->redirect(['view', 'id' => $model->idusuario]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -106,7 +107,7 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Deletes an existing Notificacion model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,15 +120,15 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Finds the Notificacion model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Notificacion the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Notificacion::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

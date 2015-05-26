@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "ubicacion".
@@ -15,21 +16,18 @@ use yii\db\ActiveRecord;
  *
  * @property Notificacion[] $notificacions
  */
-class Ubicacion extends ActiveRecord
-{
+class Ubicacion extends ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName(){
         return 'ubicacion';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules(){
         return [
             [['nombre'], 'required'],
             [['fecha_creacion', 'fecha_modificacion'], 'safe'],
@@ -40,8 +38,7 @@ class Ubicacion extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels(){
         return [
             'idubicacion' => Yii::t('app', 'Idubicacion'),
             'nombre' => Yii::t('app', 'Nombre'),
@@ -61,12 +58,11 @@ class Ubicacion extends ActiveRecord
 	/**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'timestamp' => [
                 'class'      => 'yii\behaviors\TimestampBehavior',
-                'value'      => function () { return date("dd-mm-yyyy H:i:s"); },
+                'value'      => new Expression('NOW()'),
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'fecha_creacion',
 					ActiveRecord::EVENT_BEFORE_UPDATE => 'fecha_modificacion'

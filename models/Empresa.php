@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "empresa".
@@ -59,7 +60,7 @@ class Empresa extends ActiveRecord
         return [
             'timestamp' => [
                 'class'      => 'yii\behaviors\TimestampBehavior',
-                'value'      => function () { return date("dd-mm-yyyy H:i:s"); },
+                'value'      => new Expression('NOW()'),
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'fecha_creacion',
 					ActiveRecord::EVENT_BEFORE_UPDATE => 'fecha_modificacion'

@@ -3,24 +3,23 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Notificacion;
-use app\models\NotificacionSearch;
+use app\models\Role;
+use app\models\RoleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
+
 /**
- * NotificacionController implements the CRUD actions for Notificacion model.
+ * RoleController implements the CRUD actions for Role model.
  */
-class NotificacionController extends Controller {
+class RoleController extends Controller {
 	
 	public $layout = 'admin';
 	
 	/**
      * @inheritdoc
      */
-    public function init()
-    {
+    public function init() {
         // check for admin permission (`tbl_role.can_admin`)
         // note: check for Yii::$app->user first because it doesn't exist in console commands (throws exception)
         if (!empty(Yii::$app->user) && !Yii::$app->user->can("admin")) {
@@ -42,12 +41,12 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Lists all Notificacion models.
+     * Lists all Role models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new NotificacionSearch();
+        $searchModel = new RoleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -57,7 +56,7 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Displays a single Notificacion model.
+     * Displays a single Role model.
      * @param integer $id
      * @return mixed
      */
@@ -69,16 +68,16 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Creates a new Notificacion model.
+     * Creates a new Role model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Notificacion();
+        $model = new Role();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idnotificacion]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -87,7 +86,7 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Updates an existing Notificacion model.
+     * Updates an existing Role model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,7 +96,7 @@ class NotificacionController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idnotificacion]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -106,7 +105,7 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Deletes an existing Notificacion model.
+     * Deletes an existing Role model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,15 +118,15 @@ class NotificacionController extends Controller {
     }
 
     /**
-     * Finds the Notificacion model based on its primary key value.
+     * Finds the Role model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Notificacion the loaded model
+     * @return Role the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Notificacion::findOne($id)) !== null) {
+        if (($model = Role::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

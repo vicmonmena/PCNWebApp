@@ -4,11 +4,14 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
+use yii\web\Controller;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\CodeForm;
+use app\models\NotifyForm;
+
 
 class SiteController extends Controller {
 	
@@ -117,4 +120,24 @@ class SiteController extends Controller {
 			}
 		}
 	}
+	
+	/*
+	 * Redirecciona al formulario de notificación de incidencias.
+	 */
+	public function actionNotify() {
+		$model = new NotifyForm();
+		return $this->render('notify', ['model' => $model,]);
+    }
+	
+	/*
+	 * Redirecciona al formulario de notificación de incidencias.
+	 */
+	public function actionSendNotify() {
+		$model = new NotifyForm();
+		if ($model->load(Yii::$app->request->post())) {
+			Yii::trace('actions method invoked: ' . $model->subject);	
+		}
+		return $this->render('about');
+    }
+	
 }
