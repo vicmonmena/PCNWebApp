@@ -19,8 +19,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-			'class' => 'app\components\User',
-			'identityClass' => 'app\models\User',
+			'class' => 'amnah\yii2\user\components\User',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

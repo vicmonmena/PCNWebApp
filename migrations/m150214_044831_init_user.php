@@ -28,14 +28,14 @@ class m150214_044831_init_user extends Migration
             'id' => Schema::TYPE_PK,
             'nombre' => Schema::TYPE_STRING . ' not null',
 			'web' => Schema::TYPE_STRING . ' null default null',
-            'create_time' => Schema::TYPE_TIMESTAMP . ' null default null',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
 		$this->createTable('{{%proceso}}', [
             'id' => Schema::TYPE_PK,
             'nombre' => Schema::TYPE_STRING . ' not null',
-            'create_time' => Schema::TYPE_TIMESTAMP . ' null default null',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
         $this->createTable('{{%user}}', [
             'id' => Schema::TYPE_PK,
@@ -89,35 +89,39 @@ class m150214_044831_init_user extends Migration
 		$this->createTable('{{%ubicacion}}', [
             'id' => Schema::TYPE_PK,
             'nombre' => Schema::TYPE_STRING . ' not null',
-            'create_time' => Schema::TYPE_TIMESTAMP . ' null default null',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
 		$this->createTable('{{%notificacion}}', [
             'id' => Schema::TYPE_PK,
             'motivo' => Schema::TYPE_STRING . ' not null',
-			'codigo' => Schema::TYPE_STRING . ' not null',
 			'ubicacion' => Schema::TYPE_INTEGER . ' not null',
-			'atendida' => Schema::TYPE_BOOLEAN,
-            'create_time' => Schema::TYPE_TIMESTAMP . ' null default null',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
 		$this->createTable('{{%accion}}', [
             'id' => Schema::TYPE_PK,
             'procedimiento' => Schema::TYPE_STRING . ' not null',
-            'create_time' => Schema::TYPE_TIMESTAMP . ' null default null',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
 		$this->createTable('{{%usuario_notificacion}}', [
             'id' => Schema::TYPE_PK,
 			'emisor' => Schema::TYPE_INTEGER . ' not null',
 			'destinatario' => Schema::TYPE_INTEGER . ' not null',
 			'notificacion' => Schema::TYPE_INTEGER . ' not null',
+			'codigo' => Schema::TYPE_STRING . ' not null',
+			'atendida' => Schema::TYPE_BOOLEAN,
+			'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
 		$this->createTable('{{%usuario_accion}}', [
             'id' => Schema::TYPE_PK,
             'emisor' => Schema::TYPE_INTEGER . ' not null',
 			'destinatario' => Schema::TYPE_INTEGER . ' not null',
 			'accion' => Schema::TYPE_INTEGER . ' not null',
+			'fecha_creacion' => Schema::TYPE_TIMESTAMP . ' null default null',
+            'fecha_modificacion' => Schema::TYPE_TIMESTAMP . ' null default null',
         ], $tableOptions);
 		
         // add indexes for performance optimization

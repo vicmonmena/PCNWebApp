@@ -14,20 +14,24 @@ $this->title = Yii::t('app','PCN');
 	<div class="body-content">
 		<div class="jumbotron">
 			<h2><?=Yii::t('app','PCN')?></h2>
-			<p class="lead"><?=Yii::t('app','Notificar-ayuda')?></p>
 			<?php $form = ActiveForm::begin([
 				'id' => 'inputcode-form', 
 				'method' => 'post',
-				'action' => ['sendNotify']
+				'action' => ['send']
 			]);?>
+			<p class="lead"><?=Yii::t('app','Notificar_ayuda_ubicacion')?></p>
 			<p>			
-				<?= $form->field($model, 'location') 
-					->dropDownList(
-						ArrayHelper::map(Ubicacion::find()->all(), 'idubicacion', 'nombre'))
+				<?= $form->field($model, 'location')
+					->dropDownList(ArrayHelper::map(Ubicacion::find()->all(), 'idubicacion', 'nombre'))
+					->label(false)
 				?>
 			</p>
+			<p class="lead"><?=Yii::t('app','Notificar_ayuda_motivo')?></p>
 			<p>
-				<?= $form->field($model, 'subject')->textInput(array('placeholder' => Yii::t('app','Motivo'))) ?>
+				<?= $form->field($model, 'subject')
+					->textArea(array('placeholder' => Yii::t('app','Motivo')))
+					->label(false)
+				?>
 			<p>
 			<div class="form-group">
 				<?= Html::submitButton(Yii::t('app','Enviar'), ['class' => 'btn btn-primary', 'name' => 'inputcode-button']) ?>

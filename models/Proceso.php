@@ -14,8 +14,7 @@ use yii\db\Expression;
  * @property string $fecha_creacion
  * @property string $fecha_modificacion
  */
-class Proceso extends ActiveRecord
-{
+class Proceso extends ActiveRecord {
 	
 	/**
      * @var int Admin user proceso

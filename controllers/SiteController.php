@@ -107,17 +107,38 @@ class SiteController extends Controller {
 	*/
 	
 	/*
+	 * Recoge el código pasado como parámetro en la url, lo valida y devuelve una respuesta.
+	 */
+	public function actionCodelogin($code) {
+		
+		$model = new CodeForm();
+		if (isset($code)) {
+			// Parámetro por URL
+			Yii::trace('Codigo URL: ' . $code);	
+			if ($model->checkCode($code)) {
+				return $this->render('index', ['model' => $model, 'msg' => 'Código válido']);
+			} else {
+				return $this->render('index', ['model' => $model, 'msg' => 'Código no válido']);
+			}
+		} else {
+			return $this->render('index', ['model' => $model]);
+		}
+	}
+	
+	/* 
 	 * Recoge el código introducido, lo valida y devuelve una respuesta.
 	 */
 	public function actionCode() {
 		$model = new CodeForm();
 		if ($model->load(Yii::$app->request->post())) {
-			Yii::trace('actions method invoked: ' . $model->code);	
+			Yii::trace('Codigo: ' . $model->code);	
 			if ($model->checkCode($model->code)) {
-				return $this->render('code', ['code' => $model->code, 'target' => 'Código válido']);
+				return $this->render('index', ['model' => $model, 'msg' => 'Código válido']);
 			} else {
-				return $this->render('index', ['model' => $model, 'msg' => 'codeError']);
+				return $this->render('index', ['model' => $model, 'msg' => 'Código no válido']);
 			}
+		} else {
+			return $this->render('index', ['model' => $model]);
 		}
 	}
 	
@@ -126,18 +147,21 @@ class SiteController extends Controller {
 	 */
 	public function actionNotify() {
 		$model = new NotifyForm();
-		return $this->render('notify', ['model' => $model,]);
+		return $this->render('notify', ['model' => $model]);
     }
 	
 	/*
 	 * Redirecciona al formulario de notificación de incidencias.
 	 */
-	public function actionSendNotify() {
+	public function actionSend() {
+		
 		$model = new NotifyForm();
 		if ($model->load(Yii::$app->request->post())) {
-			Yii::trace('actions method invoked: ' . $model->subject);	
+			$code = uniqid();
+			$model->sendNotify($code, Yii::$app->user->displayName);
 		}
-		return $this->render('about');
+		Yii::$app->session->setFlash('Se ha notificado la incidencia.');
+		return $this->render('notify', ['model' => $model]);
     }
 	
 }

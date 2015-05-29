@@ -23,7 +23,10 @@ $this->title = Yii::t('app','PCN');
 				'method' => 'post',
 				'action' => ['code']
 			]);?>
-				<?= $form->field($model, 'code')->textInput(array('placeholder' => Yii::t('app','Codigo'))) ?>
+				<?= $form->field($model, 'code')
+					->textInput(array('placeholder' => Yii::t('app','Codigo')))
+					->label(false)
+				?>
 				<div class="form-group">
 					<?= Html::submitButton(Yii::t('app','Enviar'), ['class' => 'btn btn-primary', 'name' => 'inputcode-button']) ?>
 				</div>

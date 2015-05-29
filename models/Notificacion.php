@@ -15,13 +15,12 @@ use yii\db\Expression;
  * @property string $fecha_creacion
  * @property integer $ubicacion
  * @property string $fecha_modificacion
- * @property integer $atendida
  *
  * @property Ubicacion $ubicacion0
  * @property UsuarioNotificacion[] $usuarioNotificacions
  */
-class Notificacion extends ActiveRecord
-{
+class Notificacion extends ActiveRecord {
+	
     /**
      * @inheritdoc
      */
@@ -38,7 +37,7 @@ class Notificacion extends ActiveRecord
         return [
             [['motivo', 'codigo', 'ubicacion'],'required'],
             [['fecha_creacion', 'fecha_modificacion'], 'safe'],
-            [['ubicacion', 'atendida'], 'integer'],
+            [['ubicacion'], 'integer'],
             [['motivo', 'codigo'], 'string', 'max' => 255]
         ];
     }
@@ -55,7 +54,6 @@ class Notificacion extends ActiveRecord
             'fecha_creacion' => Yii::t('app', 'Fecha Creacion'),
             'ubicacion' => Yii::t('app', 'Ubicacion'),
             'fecha_modificacion' => Yii::t('app', 'Fecha Modificacion'),
-            'atendida' => Yii::t('app', 'Atendida'),
         ];
     }
 

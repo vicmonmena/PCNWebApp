@@ -9,6 +9,7 @@ use yii\base\Model;
  * CodeForm is the model behind the InputCode form.
  */
 class CodeForm extends Model {
+	
     public $code;
 
     /**
@@ -37,6 +38,7 @@ class CodeForm extends Model {
 	 * 5. Muestra la información referente a la incidencia.
      */
     public function checkCode($mycode) {
+		
 		$pos = strpos($mycode, 'error');
         return !($pos !== false);
     }

@@ -7,7 +7,7 @@ use yii\db\ActiveRecord;
 use yii\base\NotSupportedException;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
-
+use app\vendor\amnah\yii2\user\components\User as ParentUser;
 /**
  * This is the model class for table "usuario".
  *
@@ -33,7 +33,7 @@ use yii\web\IdentityInterface;
  * @property UsuarioNotificacion[] $usuarioNotificacions
  * @property UsuarioNotificacion[] $usuarioNotificacions0
  */
-class User extends ActiveRecord implements IdentityInterface {	
+class User extends ParentUser {	
 	
 	/**
      * @var int Inactive status

@@ -38,7 +38,6 @@ $this->title = Yii::t('app', 'Notificacions');
 			],
 			'fecha_creacion',
             'fecha_modificacion',
-			'atendida',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -18,8 +18,8 @@ class NotificacionSearch extends Notificacion
     public function rules()
     {
         return [
-            [['idnotificacion', 'ubicacion', 'atendida'], 'integer'],
-            [['motivo', 'codigo', 'fecha_creacion'], 'safe'],
+            [['idnotificacion', 'ubicacion'], 'integer'],
+            [['motivo', 'codigo', 'fecha_creacion', 'fecha_modificacion'], 'safe'],
         ];
     }
 
@@ -59,7 +59,6 @@ class NotificacionSearch extends Notificacion
             'idnotificacion' => $this->idnotificacion,
             'fecha_creacion' => $this->fecha_creacion,
             'ubicacion' => $this->ubicacion,
-			'atendida' => $this->atendida, 
         ]);
 
         $query->andFilterWhere(['like', 'motivo', $this->motivo])
